@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Science Videos</title>
+  <link rel="stylesheet" href="videos.css" />
+</head>
+<body>
+  <header>
+    <h1>📊 Data Science Tutorials</h1>
+    <a href="available-courses.html" class="back-link">← Back to Courses</a>
+  </header>
+  <main>
+    <div class="video-box">
+      <div id="player1"></div>
+      <!-- Progress Tracker -->
+      <div style="width:100%; background-color:#ddd; border-radius:5px; margin-top:10px;">
+        <div id="progress1" style="width:0%; height:10px; background-color:#4caf50; border-radius:5px;"></div>
+      </div>
+      <p id="progressText1" style="font-size:14px;">Progress: 0%</p>
+      <p>What is Data Science?</p>
+    </div>
+
+    <div class="video-box">
+      <div id="player2"></div>
+      <!-- Progress Tracker -->
+      <div style="width:100%; background-color:#ddd; border-radius:5px; margin-top:10px;">
+        <div id="progress2" style="width:0%; height:10px; background-color:#4caf50; border-radius:5px;"></div>
+      </div>
+      <p id="progressText2" style="font-size:14px;">Progress: 0%</p>
+      <p>Data science full course</p>
+    </div>
+
+    <div class="video-box">
+      <div id="player3"></div>
+      <!-- Progress Tracker -->
+      <div style="width:100%; background-color:#ddd; border-radius:5px; margin-top:10px;">
+        <div id="progress3" style="width:0%; height:10px; background-color:#4caf50; border-radius:5px;"></div>
+      </div>
+      <p id="progressText3" style="font-size:14px;">Progress: 0%</p>
+      <p>Data Science Roadmap</p>
+    </div>
+  </main>
+  <a href="profile.html" class="back-button">⬅️ Back to Home</a>
+
+  <!-- YouTube IFrame API for dynamic progress tracking -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let players = [];
+
+    function onYouTubeIframeAPIReady() {
+      players[0] = new YT.Player('player1', {
+        height: '360',
+        width: '640',
+        videoId: 'xC-c7E5PK0Y',
+        events: { 'onReady': () => trackProgress(0,'progress1','progressText1') }
+      });
+
+      players[1] = new YT.Player('player2', {
+        height: '360',
+        width: '640',
+        videoId: 'r-uOLxNrNk8',
+        events: { 'onReady': () => trackProgress(1,'progress2','progressText2') }
+      });
+
+      players[2] = new YT.Player('player3', {
+        height: '360',
+        width: '640',
+        videoId: 'ua-CiDNNj30',
+        events: { 'onReady': () => trackProgress(2,'progress3','progressText3') }
+      });
+    }
+
+    function trackProgress(index, progressId, textId){
+      setInterval(()=>{
+        const player = players[index];
+        if(player && player.getDuration && player.getCurrentTime){
+          const duration = player.getDuration();
+          const current = player.getCurrentTime();
+          let percent = Math.round((current/duration)*100);
+          percent = percent > 100 ? 100 : percent;
+          document.getElementById(progressId).style.width = percent + '%';
+          document.getElementById(textId).innerText = `Progress: ${percent}%`;
+        }
+      },1000);
+    }
+  </script>
+</body>
+</html>
