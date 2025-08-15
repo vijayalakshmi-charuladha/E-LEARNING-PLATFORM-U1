@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f1f8e9;
+  color: #333;
+}
+
+header {
+  background: #aed581;
+  padding: 30px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #33691e;
+}
+
+.progress-section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.course-progress h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  background: #c8e6c9;
+  border-radius: 25px;
+  height: 25px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #66bb6a;
+  border-radius: 25px;
+  transition: width 0.5s ease-in-out;
+}
